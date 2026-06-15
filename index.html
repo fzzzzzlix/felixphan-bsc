@@ -1,0 +1,1105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Felix Phan, Planner Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,400;1,9..40,500&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --navy:      #0D2545;
+    --blue:      #1756A9;
+    --blue-lt:   #2B7EE8;
+    --sky:       #E8F1FB;
+    --gold:      #E8A020;
+    --warm:      #FFF8EE;
+    --white:     #FFFFFF;
+    --ink:       #111827;
+    --muted:     #6B7280;
+    --border:    #D1DCF0;
+    --before-bg: #F4F5F7;
+    --after-bg:  #EBF2FD;
+    --font-sans: 'DM Sans', system-ui, -apple-system, sans-serif;
+    --font-serif:'DM Serif Display', Georgia, serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--font-sans);
+    font-size: 16px;
+    line-height: 1.65;
+    color: var(--ink);
+    background: var(--white);
+    -webkit-font-smoothing: antialiased;
+  }
+  img { display: block; max-width: 100%; }
+  a { color: var(--blue); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  .container { max-width: 900px; margin: 0 auto; padding: 0 28px; }
+  section { padding: 80px 0; }
+  section + section { border-top: 1px solid var(--border); }
+
+  .label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--blue);
+  }
+  .label--gold  { color: var(--gold); }
+  .label--muted { color: var(--muted); }
+
+  h1 { font-family: var(--font-serif); font-size: clamp(2.2rem, 5vw, 3.4rem); line-height: 1.1; font-weight: 400; color: var(--navy); }
+  h2 { font-size: clamp(1.4rem, 3vw, 2rem); font-weight: 800; line-height: 1.2; color: var(--navy); letter-spacing: -0.02em; }
+  h3 { font-size: 1rem; font-weight: 700; line-height: 1.3; color: var(--navy); }
+  h4 { font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); }
+  p  { font-size: 1rem; line-height: 1.7; color: var(--ink); }
+  p + p { margin-top: 0.85em; }
+
+  /* NAV */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(255,255,255,0.96);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 28px;
+    height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .nav-logo { font-weight: 800; font-size: 0.85rem; color: var(--navy); letter-spacing: -0.01em; }
+  .nav-links { display: flex; gap: 24px; list-style: none; }
+  .nav-links a {
+    font-size: 0.75rem; font-weight: 600; color: var(--muted);
+    letter-spacing: 0.04em; text-transform: uppercase; transition: color 0.15s;
+  }
+  .nav-links a:hover { color: var(--blue); text-decoration: none; }
+
+  /* HERO */
+  .hero {
+    background: var(--navy);
+    padding: 80px 0 72px;
+    border-top: none;
+  }
+  .hero-inner {
+    display: flex;
+    align-items: center;
+    gap: 52px;
+  }
+  .hero-photo {
+    flex-shrink: 0;
+    width: 180px;
+    height: 180px;
+    border-radius: 14px;
+    background: rgba(255,255,255,0.06);
+    border: 1.5px dashed rgba(255,255,255,0.22);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+  .hero-photo .ph-icon-lg {
+    width: 52px; height: 52px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.1);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px;
+  }
+  .hero-photo .ph-text {
+    font-size: 0.65rem;
+    font-weight: 600;
+    color: rgba(255,255,255,0.3);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-align: center;
+  }
+  .hero-text { flex: 1; }
+  .hero-kicker {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--gold);
+    display: block;
+    margin-bottom: 14px;
+  }
+  .hero h1 { color: var(--white); margin-bottom: 6px; }
+  .hero-position {
+    font-size: 1rem;
+    font-weight: 500;
+    color: rgba(255,255,255,0.55);
+    margin-bottom: 4px;
+  }
+  .hero-location {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.35);
+    margin-bottom: 28px;
+  }
+  .hero-cta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    border-radius: 7px;
+    padding: 9px 18px;
+    transition: background 0.15s, border-color 0.15s;
+    text-decoration: none;
+    cursor: pointer;
+    letter-spacing: 0.02em;
+  }
+  .btn:hover { text-decoration: none; }
+  .btn-primary {
+    background: var(--gold);
+    color: #1a0f00;
+    border: 1.5px solid var(--gold);
+  }
+  .btn-primary:hover { background: #d4911a; border-color: #d4911a; }
+  .btn-outline {
+    background: transparent;
+    color: rgba(255,255,255,0.75);
+    border: 1.5px solid rgba(255,255,255,0.22);
+  }
+  .btn-outline:hover { background: rgba(255,255,255,0.07); border-color: rgba(255,255,255,0.4); }
+
+  /* TABLE OF CONTENTS */
+  .toc-section {
+    background: var(--sky);
+    padding: 48px 0;
+    border-top: none;
+  }
+  .toc-label { display: block; margin-bottom: 20px; }
+  .toc-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+  }
+  .toc-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    text-decoration: none;
+    transition: box-shadow 0.15s, transform 0.15s;
+  }
+  .toc-card:hover { box-shadow: 0 4px 16px rgba(23,86,169,0.12); transform: translateY(-2px); text-decoration: none; }
+  .toc-card .toc-num {
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--blue);
+  }
+  .toc-card .toc-title {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--navy);
+    line-height: 1.3;
+  }
+  .toc-card .toc-desc {
+    font-size: 0.72rem;
+    color: var(--muted);
+    line-height: 1.4;
+    margin-top: 2px;
+  }
+  .toc-card .toc-tag {
+    display: inline-block;
+    margin-top: 6px;
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 2px 8px;
+    border-radius: 4px;
+    width: fit-content;
+  }
+  .toc-card .toc-tag.real { background: #E8F8EE; color: #1a7a40; }
+  .toc-card .toc-tag.academic { background: #EEF2F8; color: var(--muted); }
+
+  /* ABOUT */
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
+  .about-intro { font-size: 1.15rem; font-weight: 500; line-height: 1.6; color: var(--navy); }
+  .skills-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+  .skill-tag {
+    font-size: 0.7rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+    color: var(--blue); background: var(--sky); border: 1px solid var(--border);
+    border-radius: 4px; padding: 4px 10px;
+  }
+
+  /* SECTION HEADER */
+  .section-header { margin-bottom: 32px; }
+  .section-header .label { display: block; margin-bottom: 10px; }
+  .case-label {
+    display: inline-block;
+    font-size: 0.7rem; font-weight: 600; color: var(--muted);
+    background: #F1F3F5; border-radius: 4px; padding: 3px 10px;
+    letter-spacing: 0.04em; margin-top: 10px;
+  }
+
+  /* CASE HEADER ROW */
+  .case-header-row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 8px;
+  }
+  .case-header-row h2 { flex: 1; min-width: 0; }
+  .btn-work {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--blue);
+    background: var(--sky);
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    padding: 7px 14px;
+    transition: background 0.15s;
+    text-decoration: none;
+    white-space: nowrap;
+    margin-top: 4px;
+  }
+  .btn-work:hover { background: var(--border); text-decoration: none; }
+
+  /* CASE INTRO */
+  .case-intro {
+    background: #F8FAFD;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px 20px;
+    margin-bottom: 24px;
+  }
+  .case-intro p { font-size: 0.88rem; color: var(--muted); line-height: 1.65; }
+  .case-intro p strong { color: var(--navy); font-weight: 600; }
+
+  /* HERO IMAGE PLACEHOLDER */
+  .hero-img-placeholder {
+    background: #EEF2F8;
+    border: 1.5px dashed #B0C4DE;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 28px 24px;
+    text-align: center;
+    min-height: 180px;
+    color: #7A90B2;
+    gap: 8px;
+    margin-bottom: 24px;
+  }
+  .hero-img-placeholder .ph-icon { font-size: 24px; }
+  .hero-img-placeholder .ph-label {
+    font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.1em; color: #7A90B2;
+  }
+  .hero-img-placeholder .ph-desc { font-size: 0.78rem; color: #9AAFC8; line-height: 1.4; max-width: 300px; }
+
+  /* BEFORE/AFTER */
+  .ba-card { border: 1px solid var(--border); border-radius: 14px; overflow: hidden; margin-bottom: 0; }
+  .ba-grid { display: grid; grid-template-columns: 1fr 1fr; }
+  .ba-before { background: var(--before-bg); padding: 32px 28px; border-right: 1px solid var(--border); }
+  .ba-after  { background: var(--after-bg);  padding: 32px 28px; }
+  .ba-panel-label {
+    font-size: 9px; font-weight: 800; letter-spacing: 0.18em; text-transform: uppercase;
+    display: flex; align-items: center; gap: 8px; margin-bottom: 18px;
+  }
+  .ba-panel-label.before-label { color: var(--muted); }
+  .ba-panel-label.after-label  { color: var(--blue); }
+  .ba-panel-label::before { content: ''; width: 24px; height: 2px; border-radius: 2px; }
+  .ba-panel-label.before-label::before { background: var(--muted); }
+  .ba-panel-label.after-label::before  { background: var(--blue); }
+
+  /* THE SENTENCE */
+  .the-sentence {
+    grid-column: 1 / -1;
+    background: var(--navy);
+    padding: 24px 32px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  .sentence-kicker {
+    font-size: 9px; font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--gold); white-space: nowrap; min-width: 110px;
+  }
+  .sentence-text {
+    font-family: var(--font-serif);
+    font-size: clamp(0.95rem, 1.8vw, 1.2rem);
+    color: var(--white);
+    font-style: italic;
+    line-height: 1.4;
+  }
+
+  /* DATA CALLOUT */
+  .data-row { display: flex; flex-wrap: wrap; gap: 12px; margin: 16px 0; }
+  .stat-box {
+    flex: 1; min-width: 90px;
+    background: var(--white); border: 1px solid var(--border);
+    border-radius: 8px; padding: 12px 14px;
+  }
+  .stat-box .stat-val   { font-size: 1.4rem; font-weight: 800; color: var(--navy); line-height: 1; }
+  .stat-box .stat-label { font-size: 0.66rem; font-weight: 600; color: var(--muted); margin-top: 4px; text-transform: uppercase; letter-spacing: 0.05em; }
+  .stat-box.bad  .stat-val { color: #C0392B; }
+  .stat-box.good .stat-val { color: #1a7a40; }
+
+  /* INSIGHT BLOCK */
+  .insight-block {
+    background: var(--white);
+    border-left: 3px solid var(--blue);
+    border-radius: 0 8px 8px 0;
+    padding: 12px 14px;
+    margin: 14px 0;
+  }
+  .insight-block p { font-size: 0.85rem; }
+  .insight-block p strong { color: var(--navy); }
+
+  /* KEYWORD COMPARE */
+  .keyword-compare { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 14px 0; }
+  .kw-box { border-radius: 8px; padding: 12px; border: 1px solid var(--border); }
+  .kw-box.maggi-kw  { background: #FFF5F5; }
+  .kw-box.barona-kw { background: #F0FFF4; }
+  .kw-box .kw-brand { font-size: 9px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 8px; }
+  .kw-box.maggi-kw  .kw-brand { color: #C0392B; }
+  .kw-box.barona-kw .kw-brand { color: #1a7a40; }
+  .kw-tag {
+    display: inline-block; font-size: 0.72rem; font-weight: 600;
+    border-radius: 4px; padding: 2px 7px; margin: 2px;
+  }
+  .maggi-kw  .kw-tag { background: rgba(192,57,43,0.08);  color: #922B21; }
+  .barona-kw .kw-tag { background: rgba(26,122,64,0.10); color: #145A32; }
+
+  /* HOOKS GRID (equal square cards) */
+  .hooks-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-auto-rows: 1fr;
+    gap: 10px;
+    margin-top: 16px;
+  }
+  .hook-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .hook-card .hook-num { font-size: 0.62rem; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: var(--blue); }
+  .hook-card h3 { font-size: 0.88rem; margin-bottom: 2px; }
+  .hook-card p  { font-size: 0.78rem; color: var(--muted); line-height: 1.45; flex: 1; }
+
+  /* IMG PLACEHOLDER (small) */
+  .img-placeholder {
+    background: #EEF2F8;
+    border: 1.5px dashed #B0C4DE;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 24px 20px;
+    text-align: center;
+    min-height: 120px;
+    color: #7A90B2;
+    gap: 6px;
+    margin: 12px 0;
+  }
+  .img-placeholder .ph-icon  { font-size: 18px; }
+  .img-placeholder .ph-label { font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #7A90B2; }
+  .img-placeholder .ph-desc  { font-size: 0.74rem; color: #9AAFC8; line-height: 1.4; max-width: 200px; }
+
+  /* STRATEGY PILLS */
+  .strategy-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+  .strategy-pill {
+    font-size: 0.75rem; font-weight: 600;
+    padding: 5px 12px; border-radius: 20px; border: 1px solid;
+  }
+  .strategy-pill.blue  { color: var(--blue); border-color: #B0CCEF; background: #EAF2FD; }
+  .strategy-pill.gold  { color: #8B6200; border-color: #DFC070; background: #FFF8E0; }
+  .strategy-pill.green { color: #1a7a40; border-color: #A3D9B0; background: #F0FFF4; }
+
+  /* CLEAN LIST */
+  ul.clean-list { list-style: none; padding: 0; }
+  ul.clean-list li {
+    font-size: 0.85rem; padding: 4px 0 4px 16px;
+    position: relative; color: var(--ink); line-height: 1.55;
+  }
+  ul.clean-list li::before { content: ','; position: absolute; left: 0; color: var(--blue); font-weight: 700; content: ':'; }
+  ul.clean-list li::before { content: ''; position: absolute; left: 0; top: 11px; width: 6px; height: 6px; border-radius: 50%; background: var(--blue); }
+
+  /* CALLOUT TEXT */
+  .callout-text {
+    font-family: var(--font-serif);
+    font-size: 1.15rem;
+    font-style: italic;
+    color: var(--navy);
+    line-height: 1.4;
+    border-left: 3px solid var(--gold);
+    padding-left: 16px;
+    margin: 16px 0;
+  }
+
+  /* OUTCOME ROW */
+  .outcome-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+  .outcome-chip {
+    font-size: 0.75rem; font-weight: 600;
+    color: var(--blue); background: var(--sky);
+    border: 1px solid var(--border); border-radius: 20px; padding: 4px 11px;
+  }
+
+  /* LITTLE ME */
+  .event-header {
+    background: linear-gradient(135deg, #0D2545 0%, #1756A9 100%);
+    border-radius: 14px 14px 0 0;
+    padding: 32px 32px 24px;
+    color: var(--white);
+  }
+  .event-kicker { font-size: 9px; font-weight: 800; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); display: block; margin-bottom: 8px; }
+  .event-header h2 { color: var(--white); margin-bottom: 6px; }
+  .event-header .case-header-row h2 { color: var(--white); }
+  .event-header .btn-work { background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.8); border-color: rgba(255,255,255,0.2); }
+  .event-header .btn-work:hover { background: rgba(255,255,255,0.18); }
+  .event-header p { color: rgba(255,255,255,0.7); font-size: 0.88rem; max-width: 480px; }
+  .role-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.18);
+    border-radius: 6px; padding: 4px 12px; font-size: 0.72rem;
+    font-weight: 600; color: rgba(255,255,255,0.75); margin-top: 12px;
+  }
+  .role-badge::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--gold); flex-shrink: 0; }
+  .event-body { border: 1px solid var(--border); border-top: none; border-radius: 0 0 14px 14px; display: grid; grid-template-columns: 1fr 1fr; }
+  .event-col { padding: 28px 24px; }
+  .event-col + .event-col { border-left: 1px solid var(--border); }
+  .metric-stack { display: flex; flex-direction: column; gap: 14px; }
+  .metric-item { display: flex; align-items: flex-start; gap: 12px; }
+  .metric-icon { width: 34px; height: 34px; border-radius: 8px; background: var(--sky); display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 14px; }
+  .metric-info .metric-val  { font-size: 1.15rem; font-weight: 800; color: var(--navy); line-height: 1.1; }
+  .metric-info .metric-desc { font-size: 0.72rem; color: var(--muted); margin-top: 2px; }
+
+  /* VINAMILK */
+  .sidebar-card {
+    background: var(--warm);
+    border: 1px solid #EADCC8;
+    border-radius: 12px;
+    padding: 0;
+    overflow: hidden;
+  }
+  .sidebar-hero-img {
+    background: linear-gradient(135deg, #2A1800 0%, #7A4800 100%);
+    padding: 28px 28px 24px;
+  }
+  .sidebar-body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+  }
+  .sidebar-col { padding: 28px 24px; }
+  .sidebar-col + .sidebar-col { border-left: 1px solid #EADCC8; }
+  .sidebar-research-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: #FFF3DC; border: 1px solid #E8C77A;
+    border-radius: 6px; padding: 4px 11px;
+    font-size: 0.7rem; font-weight: 700;
+    color: #8B6200; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 14px;
+  }
+  .technique-cards { display: flex; flex-direction: column; gap: 10px; margin-top: 10px; }
+  .technique-card { background: var(--white); border: 1px solid #EADCC8; border-radius: 8px; padding: 14px 16px; }
+  .technique-card .tc-num { font-size: 0.62rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.12em; color: #B8860B; margin-bottom: 4px; }
+  .technique-card h3 { font-size: 0.88rem; color: var(--navy); margin-bottom: 4px; }
+  .technique-card p  { font-size: 0.78rem; color: var(--muted); }
+
+  /* DISCLAIMER */
+  .disclaimer { display: inline-block; font-size: 0.68rem; font-weight: 600; color: var(--muted); background: #F1F3F5; border-radius: 4px; padding: 3px 10px; margin-top: 12px; letter-spacing: 0.03em; }
+
+  /* CLOSE */
+  .close-section { background: var(--navy); padding: 80px 0; border-top: none; }
+  .close-section .label { color: var(--gold); display: block; margin-bottom: 16px; }
+  .close-tagline { font-family: var(--font-serif); font-size: clamp(1.4rem, 3vw, 2.2rem); color: var(--white); line-height: 1.3; margin-bottom: 20px; max-width: 540px; }
+  .close-body { font-size: 0.9rem; color: rgba(255,255,255,0.6); line-height: 1.7; max-width: 520px; margin-bottom: 32px; }
+  .contact-grid { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; margin-top: 32px; }
+  .contact-item { display: flex; flex-direction: column; gap: 2px; }
+  .contact-item .c-label { font-size: 9px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.35); }
+  .contact-item .c-val   { font-size: 0.88rem; font-weight: 600; color: var(--white); }
+  .contact-divider { width: 1px; height: 38px; background: rgba(255,255,255,0.12); }
+
+  /* RESPONSIVE */
+  @media (max-width: 720px) {
+    .nav-links { display: none; }
+    .hero-inner { flex-direction: column; align-items: flex-start; gap: 28px; }
+    .about-grid { grid-template-columns: 1fr; }
+    .toc-grid { grid-template-columns: repeat(2, 1fr); }
+    .ba-grid { grid-template-columns: 1fr; }
+    .ba-before { border-right: none; border-bottom: 1px solid var(--border); }
+    .the-sentence { flex-direction: column; gap: 8px; }
+    .hooks-grid { grid-template-columns: 1fr; }
+    .keyword-compare { grid-template-columns: 1fr; }
+    .sidebar-body { grid-template-columns: 1fr; }
+    .sidebar-col + .sidebar-col { border-left: none; border-top: 1px solid #EADCC8; }
+    .event-body { grid-template-columns: 1fr; }
+    .event-col + .event-col { border-left: none; border-top: 1px solid var(--border); }
+    .contact-divider { display: none; }
+    .case-header-row { flex-direction: column; gap: 10px; }
+  }
+
+  @media print {
+    nav { display: none; }
+    .hero { padding: 40px 0; }
+    section { padding: 40px 0; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <span class="nav-logo">Felix Phan</span>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#tresemme">TRESemmé</a></li>
+      <li><a href="#maggi">Maggi</a></li>
+      <li><a href="#vinamilk">Vinamilk</a></li>
+      <li><a href="#littleme">Little Me</a></li>
+      <li><a href="#close">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="container">
+    <div class="hero-inner">
+      <div class="hero-photo" style="background:none;border:none;overflow:hidden;">
+        <img src="images/hero-portrait.jpg" alt="Felix Phan" style="width:180px;height:180px;object-fit:cover;border-radius:14px;display:block;" />
+      </div>
+      <div class="hero-text">
+        <span class="hero-kicker">Planner Portfolio &nbsp;·&nbsp; Blue Sky Corporation 2026</span>
+        <h1>Felix Phan</h1>
+        <p class="hero-position">Planner</p>
+        <p class="hero-location">Ho Chi Minh City, Vietnam</p>
+        <div class="hero-cta-row">
+          <a class="btn btn-primary" href="https://drive.google.com/file/d/1MYIpj4nTKSxdcbyBw0jSPAXaua6BylnJ/view?usp=drive_link" target="_blank">&#8595; Download CV</a>
+          <a class="btn btn-outline" href="https://linkedin.com/in/felixphan" target="_blank">LinkedIn ↗</a>
+          <a class="btn btn-outline" href="#close">Contact ↓</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TABLE OF CONTENTS -->
+<div class="toc-section">
+  <div class="container">
+    <span class="label toc-label">What's inside</span>
+    <div class="toc-grid">
+      <a class="toc-card" href="#tresemme">
+        <span class="toc-num">Case 01</span>
+        <span class="toc-title">TRESemmé Vietnam Insights Report and Media Plan</span>
+        <span class="toc-desc">Social listening across 4 platforms, a performance gap diagnosis, and a full media plan proposal.</span>
+        <span class="toc-tag academic">Academic</span>
+      </a>
+      <a class="toc-card" href="#maggi">
+        <span class="toc-num">Case 02</span>
+        <span class="toc-title">Maggi Recipe Solution Competitive Analysis</span>
+        <span class="toc-desc">755 comments coded in NVivo, a keyword cloud comparison, and a repositioning strategy.</span>
+        <span class="toc-tag academic">Academic</span>
+      </a>
+      <a class="toc-card" href="#vinamilk">
+        <span class="toc-num">Case 03</span>
+        <span class="toc-title">Vinamilk Brand Bonding Research Design</span>
+        <span class="toc-desc">In-depth interview methodology proposal across 3 cities, 30 respondents, 2 innovative techniques.</span>
+        <span class="toc-tag academic">Academic</span>
+      </a>
+      <a class="toc-card" href="#littleme">
+        <span class="toc-num">Case 04</span>
+        <span class="toc-title">RMIT "Little Me" Mental Wellness Exhibition</span>
+        <span class="toc-desc">A 3-day campus exhibition I planned and ran as Head Organizer at RMIT Hanoi.</span>
+        <span class="toc-tag real">Real Work</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="section-header">
+      <span class="label">About</span>
+      <h2>I find the gap between what a brand<br>says and what its audience hears.</h2>
+    </div>
+    <div class="about-grid">
+      <div>
+        <p class="about-intro">I'm Felix. Communication student at RMIT Vietnam, Business Administration student at NEU, graduating 2027. Most of what I know about planning I learned by doing it: reading briefs, pulling data, and turning what the numbers show into a direction.</p>
+        <p style="font-size:0.88rem;color:var(--muted);margin-top:12px;">Tools in daily use: NVivo, BuzzSumo, Fanpage Karma, Canva. AI for drafting, synthesizing, and stress-testing ideas before they hit a slide.</p>
+      </div>
+      <div>
+        <p style="font-size:0.92rem;">My work covers the full loop: social listening to locate the gap, thematic coding to name it, and strategy proposals to close it. The data in these projects I pulled myself, raw platform exports, not market reports. The analysis was done in NVivo. The proposals were written and presented.</p>
+        <div class="skills-row">
+          <span class="skill-tag">Social Listening</span>
+          <span class="skill-tag">Consumer Insight</span>
+          <span class="skill-tag">Media Planning</span>
+          <span class="skill-tag">NVivo, BuzzSumo</span>
+          <span class="skill-tag">Proposal Writing</span>
+          <span class="skill-tag">Event Strategy</span>
+          <span class="skill-tag">AI Workflow</span>
+          <span class="skill-tag">Presentation</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRESEMMÉ -->
+<section id="tresemme">
+  <div class="container">
+    <div class="section-header">
+      <span class="label">Case 01 &nbsp;·&nbsp; Hero Case</span>
+      <div class="case-header-row">
+        <h2>TRESemmé Vietnam Consumer Insights Report and Media Plan Proposal in July, 2024</h2>
+        <a class="btn-work" href="https://drive.google.com/drive/folders/1t3kemcVrO8DzPhv0xVs8V9fyOw5Q_Q9c?usp=drive_link" target="_blank">View Full Work ↗</a>
+      </div>
+      <span class="case-label">Academic coursework project &nbsp;·&nbsp; Role: Researcher and Media Planner</span>
+    </div>
+
+    <div class="case-intro">
+      <p><strong>What this project is:</strong> In July 2024, TRESemmé Vietnam had strong TikTok performance but a declining Facebook audience and a near-zero Instagram presence. The numbers across platforms were not talking to each other. This project aimed to find out why. It was conducted in two phases: a consumer media insights report (analyzing TRESemmé's performance and positioning versus competitors Tsubaki and L'Oréal Professionnel across Facebook, TikTok, Instagram, and YouTube using Fanpage Karma) followed by a media plan proposal built directly from what the data revealed. All data was pulled manually; no third-party market reports were used.</p>
+    </div>
+
+    <div style="margin-bottom:24px;border-radius:10px;overflow:hidden;">
+      <img src="images/tres-hero.jpg" alt="TRESemmé Vietnam Consumer Insights Report" style="width:100%;display:block;" />
+    </div>
+
+    <div class="ba-card">
+      <div class="ba-grid">
+        <!-- BEFORE -->
+        <div class="ba-before">
+          <div class="ba-panel-label before-label">Before: what the data showed</div>
+          <h3>The numbers were not adding up</h3>
+          <p style="font-size:0.85rem;margin-top:10px;color:var(--muted);">TRESemmé holds 2.1% market share in a premium haircare segment worth 5.2%. On paper, it should be growing. The platform data said otherwise.</p>
+
+          <div class="data-row">
+            <div class="stat-box bad">
+              <div class="stat-val">-0.09%</div>
+              <div class="stat-label">Facebook follower growth</div>
+            </div>
+            <div class="stat-box bad">
+              <div class="stat-val">0.00%</div>
+              <div class="stat-label">Instagram post interaction</div>
+            </div>
+            <div class="stat-box bad">
+              <div class="stat-val">-0.2%</div>
+              <div class="stat-label">YouTube follower growth</div>
+            </div>
+          </div>
+
+          <div class="insight-block">
+            <p><strong>The contradiction:</strong> TRESemmé dominated TikTok, 60k fans, 3.3% post interaction rate, 16% follower growth. At the same time, Facebook was contracting, Instagram was flatline, YouTube was losing ground. Momentum on one platform, contraction on every other.</p>
+          </div>
+
+          <div style="margin:12px 0;border-radius:8px;overflow:hidden;">
+            <img src="images/tres-chart.jpg" alt="Platform performance matrix: TRESemmé vs. Tsubaki vs. L'Oréal, Apr-Jul 2024" style="width:100%;display:block;" />
+          </div>
+
+          <p style="font-size:0.83rem;margin-top:10px;">Tsubaki had 26k TikTok fans but was growing on Facebook at +0.52% while TRESemmé contracted. L'Oréal had 6.5M Facebook followers and a 0.00% interaction rate: the opposite problem, but both revealed the same pattern. Scale without connection.</p>
+          <p style="font-size:0.83rem;margin-top:8px;">52% of Vietnamese consumers will not try a new brand unless a friend confirms it. TRESemmé had reach. It did not have the trust transfer to go with it.</p>
+        </div>
+
+        <!-- AFTER -->
+        <div class="ba-after">
+          <div class="ba-panel-label after-label">After: from insights to media plan proposal</div>
+          <h3>From Insights to Media Plan Proposal</h3>
+
+          <div style="margin:12px 0;border-radius:8px;overflow:hidden;">
+            <img src="images/tres-key-visual.jpg" alt="TRESemmé campaign key visual: Step up your hair game at home" style="width:100%;display:block;" />
+          </div>
+
+          <div class="callout-text" style="font-size:1rem;margin:14px 0;">"Step up your hair game at home."</div>
+          <p style="font-size:0.85rem;color:var(--ink);margin-bottom:12px;">The creative territory: not salon-grade product specs, but salon-grade <em>confidence</em>. The shift was about who plays the hero: not the product, but the woman using it. The Salon Credential strategy gave that shift a structure.</p>
+
+          <h4 style="margin-bottom:10px;">4 activation hooks</h4>
+          <div class="hooks-grid">
+            <div class="hook-card">
+              <div class="hook-num">Hook 01 · Star</div>
+              <h3>AI Hairstylist DOOH</h3>
+              <p>Interactive out-of-home with real-time hair analysis. A billboard that functions as a consultation.</p>
+            </div>
+            <div class="hook-card">
+              <div class="hook-num">Hook 02 · Star</div>
+              <h3>#HomeSalonWithTRESemmé</h3>
+              <p>UGC hashtag challenge converting TikTok momentum into cross-platform earned media.</p>
+            </div>
+            <div class="hook-card">
+              <div class="hook-num">Hook 03</div>
+              <h3>Salon Pop-Up Experience</h3>
+              <p>Tactile, in-person proof that the product delivers what the campaign claims.</p>
+            </div>
+            <div class="hook-card">
+              <div class="hook-num">Hook 04</div>
+              <h3>Stylist Creator Network</h3>
+              <p>Professional endorsement tier shifting brand perception from aspirational to credible.</p>
+            </div>
+          </div>
+
+          <div class="data-row" style="margin-top:16px;">
+            <div class="stat-box good">
+              <div class="stat-val">~7.3B</div>
+              <div class="stat-label">VND campaign budget</div>
+            </div>
+            <div class="stat-box good">
+              <div class="stat-val">25-40</div>
+              <div class="stat-label">Target age range</div>
+            </div>
+            <div class="stat-box good">
+              <div class="stat-val">10-30M</div>
+              <div class="stat-label">VND income band</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- THE SENTENCE -->
+      <div class="the-sentence">
+        <span class="sentence-kicker">Summary</span>
+        <span class="sentence-text">Social listening uncovered a cross-platform performance split, and the insight drove a complete media plan proposal: reframe TRESemmé from product-speak to beauty-partner identity.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MAGGI -->
+<section id="maggi">
+  <div class="container">
+    <div class="section-header">
+      <span class="label">Case 02</span>
+      <div class="case-header-row">
+        <h2>Maggi Recipe Solution: Competitive and Consumers Analysis in July 2025, Vietnam</h2>
+        <a class="btn-work" href="https://drive.google.com/drive/folders/1kkAVvXH7BbVC1XvEaSmt6q9WWWQh_zAk?usp=drive_link" target="_blank">View Full Work ↗</a>
+      </div>
+      <span class="case-label">Academic coursework, individual project &nbsp;·&nbsp; Role: Researcher and Strategist</span>
+    </div>
+
+    <div class="case-intro">
+      <p><strong>What this project is:</strong> Maggi Recipe Solution is a newer product line by Nestlé Vietnam: pre-mixed cooking bases designed to reduce meal prep complexity. Despite Maggi's 90%+ household penetration in Vietnam, the Recipe Solution line was struggling to build attention or loyalty. This project analyzed Maggi's brand communication on Facebook, TikTok, and YouTube against two direct competitors (Barona and Cholimex) over three months. The methodology included social listening via Fanpage Karma, sentiment analysis of 755 comments coded in NVivo, thematic analysis of 82 product reviews across Shopee, Lazada, Tiki, and BachHoaXanh, and a full customer journey map. The goal: find out what the brand was saying, what its audience was actually hearing, and what the gap between the two meant for strategy.</p>
+    </div>
+
+    <div style="margin-bottom:24px;border-radius:10px;overflow:hidden;">
+      <img src="images/maggi-hero.jpg" alt="Maggi Recipe Solution Competitive and Consumer Analysis" style="width:100%;display:block;" />
+    </div>
+
+    <div class="ba-card">
+      <div class="ba-grid">
+        <!-- BEFORE -->
+        <div class="ba-before">
+          <div class="ba-panel-label before-label">Before: the gap nobody was naming</div>
+          <h3>Two keyword clouds. Different worlds.</h3>
+          <p style="font-size:0.85rem;margin-top:10px;color:var(--muted);">Social listening across Facebook, TikTok, and YouTube, 74 posts and 755 comments coded in NVivo. The contrast between brands was immediate.</p>
+
+          <div class="keyword-compare">
+            <div class="kw-box maggi-kw">
+              <div class="kw-brand">Maggi: top keywords</div>
+              <span class="kw-tag">cao cap (premium)</span>
+              <span class="kw-tag">gia (price)</span>
+              <span class="kw-tag">chuan (standard)</span>
+              <span class="kw-tag">vi thom (aroma)</span>
+              <span class="kw-tag">Shopee</span>
+            </div>
+            <div class="kw-box barona-kw">
+              <div class="kw-brand">Barona: top keywords</div>
+              <span class="kw-tag">de (easy)</span>
+              <span class="kw-tag">ngon (delicious)</span>
+              <span class="kw-tag">kham pha (explore)</span>
+              <span class="kw-tag">cong thuc (recipe)</span>
+              <span class="kw-tag">nha (home)</span>
+            </div>
+          </div>
+
+          <div class="insight-block">
+            <p><strong>What the data revealed:</strong> Maggi's audience talked about the product in transactional terms: price, delivery speed, discount codes. Barona's audience talked about what they cooked with it. One brand was a purchase. The other was an experience.</p>
+          </div>
+
+          <div class="data-row">
+            <div class="stat-box bad">
+              <div class="stat-val">364</div>
+              <div class="stat-label">Maggi FB comments</div>
+            </div>
+            <div class="stat-box bad">
+              <div class="stat-val">73</div>
+              <div class="stat-label">Positive comments only</div>
+            </div>
+          </div>
+
+          <p style="font-size:0.82rem;margin-top:10px;color:var(--muted);">Most commented brand of the three. Least loved. Awareness without affinity: the most common way a heritage brand loses its ground quietly.</p>
+
+          <div class="img-placeholder">
+            <span class="ph-icon">🗺</span>
+            <div class="ph-label">Treemap placeholder</div>
+            <div class="ph-desc">NVivo thematic treemap: dominant topics in Maggi, Barona and Cholimex FB comment sections</div>
+          </div>
+
+          <p style="font-size:0.82rem;margin-top:10px;">Maggi was caught in a strategic blind spot: positioned too vaguely to command its premium pricing, priced too high to compete on value. Not a product problem. A narrative problem.</p>
+        </div>
+
+        <!-- AFTER -->
+        <div class="ba-after">
+          <div class="ba-panel-label after-label">After: the strategy direction</div>
+          <h3>Authentic Convenience</h3>
+          <p style="font-size:0.85rem;margin-top:10px;color:var(--muted);">The repositioning territory: trusted taste, minimal effort, rooted in Vietnamese kitchen culture. A narrative shift, not a product upgrade.</p>
+
+          <div class="strategy-row">
+            <span class="strategy-pill blue">1-step to tradition campaign</span>
+            <span class="strategy-pill green">#MaggiNhanhMaNgon</span>
+            <span class="strategy-pill gold">Try Me Trust Me</span>
+          </div>
+
+          <p style="font-size:0.83rem;margin-top:14px;">85% of Vietnamese consumers say food is their main cultural anchor. Maggi has been present in over 90% of Vietnamese households for decades. The brand did not need a new product story. It needed to reconnect its existing story to what people actually care about when they cook.</p>
+
+          <h4 style="margin-top:16px;margin-bottom:10px;">2-tier influencer strategy</h4>
+          <ul class="clean-list">
+            <li><strong>Tier 1, Awareness:</strong> TikTok mega-creators (Ha Cooking, 1.9M followers, 51.9M likes) lead branded hashtag challenges. 60-second meals. Real kitchens.</li>
+            <li style="margin-top:6px;"><strong>Tier 2, Trust:</strong> Facebook niche admins (Hoc Nau An, 3.6M followers) run live Q&As, recipe clinics, and ingredient transparency content.</li>
+            <li style="margin-top:6px;"><strong>Closing the loop:</strong> All influencer content links back to a centralized campaign, turning inspiration into consideration and purchase.</li>
+          </ul>
+
+          <div class="img-placeholder" style="margin-top:14px;">
+            <span class="ph-icon">📱</span>
+            <div class="ph-label">Content mock-up placeholder</div>
+            <div class="ph-desc">#MaggiNhanhMaNgon TikTok challenge frame and Tier 1 creator examples</div>
+          </div>
+
+          <div class="outcome-row">
+            <span class="outcome-chip">Authentic convenience positioning</span>
+            <span class="outcome-chip">Community-first distribution</span>
+            <span class="outcome-chip">Recipe remix challenges</span>
+            <span class="outcome-chip">Ingredient transparency content</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- THE SENTENCE -->
+      <div class="the-sentence">
+        <span class="sentence-kicker">Summary</span>
+        <span class="sentence-text">755 Facebook comments decoded to find one gap: MAGGI was competing on product attributes while Barona's audience was busy talking about what they cooked with it.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VINAMILK -->
+<section id="vinamilk">
+  <div class="container">
+    <div class="section-header">
+      <span class="label">Case 03</span>
+      <div class="case-header-row">
+        <h2>Vinamilk Brand Bonding Investigation in 2023</h2>
+        <a class="btn-work" href="https://drive.google.com/drive/folders/17Ffpz-HPkDFjQn3kYHUfq6EYdFFDYyiz?usp=drive_link" target="_blank">View Full Proposal ↗</a>
+      </div>
+      <span class="case-label">Academic coursework, individual project &nbsp;·&nbsp; Research design proposal only, study not executed</span>
+    </div>
+
+    <div class="case-intro">
+      <p><strong>What this project is:</strong> Vinamilk holds 43.7% of Vietnam's dairy market and is ranked the world's sixth-largest dairy brand. Despite that scale, the brand had no owned or monitored community on Facebook, its most important relationship-building platform. Dozens of fan groups existed, but the brand was not present in any of them. Nearly 48.5% of Vinamilk's Facebook audience reported feeling an information gap. This project proposed a research design to investigate Vinamilk's brand bonding on Facebook: specifically, how emotionally connected consumers were to the brand, and what factors drove or limited their involvement. The proposal covered target population, sampling design, full interview protocol, and two innovative techniques. The study was designed but not carried out; this is the methodology proposal.</p>
+    </div>
+
+    <div class="sidebar-card">
+      <div class="sidebar-hero-img" style="padding:0;background:none;">
+        <img src="images/vinamilk.jpg" alt="Vinamilk Brand Bonding Investigation" style="width:100%;display:block;border-radius:12px 12px 0 0;max-height:240px;object-fit:cover;" />
+      </div>
+
+      <div class="sidebar-body">
+        <div class="sidebar-col">
+          <div class="sidebar-research-badge">Research Design Showcase</div>
+          <h3 style="margin-bottom:10px;">The marketing challenge</h3>
+          <p style="font-size:0.86rem;">Facebook is the most effective platform for building brand-community relationships through group dynamics, but Vinamilk's existing groups operated without brand involvement: consumer-to-consumer only, no brand steering, no loyalty feedback loop. That absence, combined with a documented information gap among followers, was weakening brand bonding at scale.</p>
+
+          <p style="font-size:0.86rem;margin-top:10px;">The proposed study: 30 in-depth interviews across Hanoi, Ho Chi Minh City, and Da Nang, 10 per city, targeting Vietnamese Vinamilk consumers aged 25-44 who had joined and participated in Vinamilk-adjacent Facebook groups. Purposive sampling. In-person at cafes in each city.</p>
+
+          <div style="margin-top:16px;padding-top:14px;border-top:1px solid #EADCC8;">
+            <h4 style="margin-bottom:6px;color:#8B6200;">Why in-depth interview?</h4>
+            <p style="font-size:0.8rem;color:var(--muted);">Brand bonding involves emotional connectedness and brand involvement: two variables that surface through conversation, not through survey checkboxes. IDIs capture the why behind behavior, including the kind of associations people hold but would not volunteer unprompted.</p>
+          </div>
+        </div>
+
+        <div class="sidebar-col">
+          <h4 style="margin-bottom:10px;color:#8B6200;">Two innovative techniques in the protocol</h4>
+          <div class="technique-cards">
+            <div class="technique-card">
+              <div class="tc-num">Question 7, Projective Technique</div>
+              <h3>Imaginative Scenario</h3>
+              <p>Participants respond to a hypothetical scenario asking how Vinamilk relates to their self-image. The projective format bypasses social desirability bias and surfaces emotional associations that would not emerge from direct questioning. Designed to measure emotional connectedness.</p>
+            </div>
+            <div class="technique-card">
+              <div class="tc-num">Question 18, Visual Aid</div>
+              <h3>Brand Interaction Screenshots</h3>
+              <p>Participants are shown 5 real screenshots of Vinamilk's recent replies to customers on its Facebook page. Research confirms consumer impressions of brand interaction are more accurate when grounded in visual evidence than when recalled from memory alone.</p>
+            </div>
+          </div>
+
+          <div class="insight-block" style="border-color:var(--gold);background:#FFFBF0;margin-top:12px;">
+            <p style="font-size:0.8rem;"><strong>The design principle:</strong> Do not ask people what they think of the brand. Show them something real, then ask how they feel. The gap between their reaction and the brand's intent is where the insight lives.</p>
+          </div>
+          <span class="disclaimer">Note: research design only. No fieldwork was conducted as part of this coursework project.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LITTLE ME -->
+<section id="littleme">
+  <div class="container">
+    <div class="section-header">
+      <span class="label">Case 04 &nbsp;·&nbsp; Real Work</span>
+    </div>
+
+    <div class="ba-card" style="overflow:visible;">
+      <div class="event-header">
+        <span class="event-kicker">RMIT Vietnam Student Council Hanoi &nbsp;·&nbsp; April 3-5, 2024</span>
+        <div class="case-header-row" style="margin-bottom:6px;">
+          <h2>RMIT "Little Me" Exhibition Spring 2024</h2>
+          <a class="btn-work" href="https://drive.google.com/drive/folders/1FiBLLSjVYBPSGc2WvJgVemFod2fg4s49?usp=drive_link" target="_blank">View Event Report ↗</a>
+        </div>
+        <p>A 3-day interactive mental wellness exhibition at RMIT Hanoi that I planned and ran as Head Organizer. The idea was simple: give students a space to slow down during exam season without making it feel like a therapy session.</p>
+        <span class="role-badge">Head Organizer</span>
+      </div>
+
+      <div class="event-body">
+        <div class="event-col">
+          <h4 style="margin-bottom:14px;">The planning story</h4>
+
+          <div class="case-intro" style="background:var(--warm);border-color:#EADCC8;">
+            <p><strong>What this event is:</strong> An interactive exhibition open to all students and staff at RMIT Hanoi, designed to make mental health conversations accessible during a high-stress semester. Collaborators included RMIT's Wellbeing Department (providing therapeutic content rigor), Current Media (earned coverage), and Artist My Tam (adding cultural reach and credibility).</p>
+          </div>
+
+          <div style="margin-top:16px;">
+            <h4 style="margin-bottom:8px;">The insight</h4>
+            <p style="font-size:0.87rem;">Gen Z students at RMIT did not avoid mental health conversations because they did not care. They avoided them because the format usually felt like a formal intervention. The question was not what to say, but how to design an entry point that felt low-stakes enough to walk through.</p>
+          </div>
+
+          <div style="margin-top:14px;">
+            <h4 style="margin-bottom:8px;">The format</h4>
+            <p style="font-size:0.87rem;">An exhibition, not a talk. Interactive stations people could move through at their own pace: <strong>Draw Little Me</strong> (sketch your younger self), <strong>DIY Calm Jar</strong> (sensory decompression activity), and a shared gallery of growth moments contributed by the RMIT community.</p>
+          </div>
+
+          <div style="margin-top:16px;border-radius:8px;overflow:hidden;">
+            <img src="images/little-me-hero.jpg" alt="Little Me Exhibition: Draw Little Me and DIY Calm Jar stations" style="width:100%;display:block;" />
+          </div>
+        </div>
+
+        <div class="event-col">
+          <h4 style="margin-bottom:14px;">What happened</h4>
+          <div class="metric-stack">
+            <div class="metric-item">
+              <div class="metric-icon">👥</div>
+              <div class="metric-info">
+                <div class="metric-val">316</div>
+                <div class="metric-desc">Total visitors: 295 students and 21 staff across 3 days</div>
+              </div>
+            </div>
+            <div class="metric-item">
+              <div class="metric-icon">📱</div>
+              <div class="metric-info">
+                <div class="metric-val">34,588</div>
+                <div class="metric-desc">Organic reach across Facebook (23.9k), TikTok (7.5k), Instagram (3.2k)</div>
+              </div>
+            </div>
+            <div class="metric-item">
+              <div class="metric-icon">🔄</div>
+              <div class="metric-info">
+                <div class="metric-val">7%</div>
+                <div class="metric-desc">Return rate: visitors who came back and brought someone new</div>
+              </div>
+            </div>
+            <div class="metric-item">
+              <div class="metric-icon">🎯</div>
+              <div class="metric-info">
+                <div class="metric-val">300+</div>
+                <div class="metric-desc">Visits KPI hit on Day 2 of 3</div>
+              </div>
+            </div>
+          </div>
+
+          <div style="margin-top:22px;padding-top:18px;border-top:1px solid var(--border);">
+            <h4 style="margin-bottom:8px;">What the data confirmed</h4>
+            <ul class="clean-list">
+              <li>Interactive formats outperformed expectations: had to borrow extra boards mid-event for Draw Little Me</li>
+              <li style="margin-top:5px;">Day 1 visitors spread the word organically; Day 2 traffic was driven by earned and shared media</li>
+              <li style="margin-top:5px;">7% of visitors returned across days and brought new people: advocacy, not just attendance</li>
+              <li style="margin-top:5px;">"Calming, optimistic, colourful" was the most common unprompted description</li>
+            </ul>
+          </div>
+
+          <div style="margin-top:16px;border-radius:8px;overflow:hidden;">
+            <img src="images/little-me-chart.jpg" alt="Little Me: 3-day visit breakdown and social reach by platform" style="width:100%;display:block;" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CLOSE -->
+<section class="close-section" id="close" style="border-top:none;">
+  <div class="container">
+    <span class="label">Let's talk</span>
+    <p class="close-tagline">Brief first. Story next. Everything else follows.</p>
+    <p class="close-body">Finding the gap between what a brand communicates and what its audience actually receives: that is the starting point for every case in this portfolio. I am a fresher. What I bring is the research range: pulling raw data from Fanpage Karma, coding hundreds of comments in NVivo, building keyword comparisons that show where brand communication and consumer perception diverge, and turning that into a proposal worth presenting. I would like to keep doing that at BSC.</p>
+
+    <div class="contact-grid">
+      <div class="contact-item">
+        <span class="c-label">Name</span>
+        <span class="c-val">Felix Phan</span>
+      </div>
+      <div class="contact-divider"></div>
+      <div class="contact-item">
+        <span class="c-label">Phone</span>
+        <span class="c-val">+84 936 647 704</span>
+      </div>
+      <div class="contact-divider"></div>
+      <div class="contact-item">
+        <span class="c-label">Email</span>
+        <span class="c-val">felixphan.contact@gmail.com</span>
+      </div>
+      <div class="contact-divider"></div>
+      <div class="contact-item">
+        <span class="c-label">LinkedIn</span>
+        <span class="c-val">linkedin.com/in/felixphan</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer style="background:#070F1C;padding:18px 0;border-top:1px solid rgba(255,255,255,0.05);">
+  <div class="container" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;">
+    <span style="font-size:0.7rem;color:rgba(255,255,255,0.2);">Felix Phan, Planner Portfolio 2026</span>
+    <span style="font-size:0.7rem;color:rgba(255,255,255,0.2);">Prepared for Blue Sky Corporation</span>
+  </div>
+</footer>
+
+</body>
+</html>
